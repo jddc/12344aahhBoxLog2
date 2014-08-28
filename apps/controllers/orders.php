@@ -10,7 +10,6 @@ class Orders extends Controller{
 			if (array_key_exists('id_sap_order', $query['items'])) {
     		$id_sap_order = $query['items']['id_sap_order'];	
 		}		
-
 		if(isset($id_sap_order) && $id_sap_order != "")
 			$orders = $this -> orders_model -> get_order($id_sap_order);
 		else
@@ -21,7 +20,7 @@ class Orders extends Controller{
 			$this -> load -> view("orders_view", $datos);			
 		}
 	}
-
+	
 	public function post_orders(){
 
 		$this -> load -> model("orders_model");
@@ -41,11 +40,6 @@ class Orders extends Controller{
 				exit();
 			}
 		}
-
-		$this -> orders_model -> put_order($order);
-					
+		$this -> orders_model -> put_order($order);			
 	}
-
-
-
 }

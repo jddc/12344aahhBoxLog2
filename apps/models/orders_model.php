@@ -1,6 +1,5 @@
 <?php
 	class Orders_model extends Model{
-		
 		public function get_order($id_sap_order = ""){
 			$this -> db -> get("select id_sap_order,state,details,date from `order` where id_sap_order = ".$id_sap_order);
 			return $this -> db -> dbs_rows;
