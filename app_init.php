@@ -36,6 +36,12 @@
 	import('core.connection_handle');
 	import('core.dataBaseMYSQL');
 
-
+        //FirePHP
+        if (DEBUG_MODE) {
+            import('core.helpers.debug.fb');
+        } else {
+            import('core.helpers.debug.fb_not');
+        }
+        
 	App::init();
 ?>

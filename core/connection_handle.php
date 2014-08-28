@@ -12,7 +12,7 @@
 		public static function registrar_conexiones(){
 			//Este metodo guardara  la  instnacias de conexion del archivo de  configuracion de  conexiones
 			self :: $connects = array(
-				"MYSQL1" => new DataBaseMysql("localhost","root","","boxlog"),
+				"MYSQL1" => new DataBaseMysql("localhost","root","root","rest"),
 				"MYSQL2" => new DataBaseMysql("localhost","root","","otra")
 			);
 		}
