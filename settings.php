@@ -30,4 +30,5 @@
 
 	    require_once "$file.php";
 	}
+        //Esto es un comentario
 ?>
