@@ -1,7 +1,6 @@
 <?php
 class Orders extends Controller{
 	public function get_orders(){
-		echo "METODO GET";
 		$this -> load -> model("orders_model");
 		$this -> orders_model -> connection_set("MYSQL1");
 		$id_sap_order = "";
@@ -24,7 +23,6 @@ class Orders extends Controller{
 	}
 
 	public function post_orders(){
-		echo "METODO POST";
 
 		$this -> load -> model("orders_model");
 		$this -> orders_model -> connection_set("MYSQL1");
@@ -43,7 +41,7 @@ class Orders extends Controller{
 				exit();
 			}
 		}
-		
+
 		$this -> orders_model -> put_order($order);
 					
 	}
