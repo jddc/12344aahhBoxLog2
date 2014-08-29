@@ -5,13 +5,16 @@
 
 	# Estado de deploy
 	const PRODUCTION = FALSE;
-
+        
 	# Archivo standar de respuestas
 	const FILE_STANDAR_RESPONSE = 'responseHTTP';
 
 	# Formato de respueta
 	const FORMAT_RESPONSE = 'json';
-
+        
+        # FirePHP debug
+        const DEBUG_MODE = TRUE;
+        
 	# Configuracion de directivas de php.ini
 	if(!PRODUCTION){
 		ini_set('error_reporting', E_ALL | E_NOTICE | E_STRICT);
@@ -30,4 +33,5 @@
 
 	    require_once "$file.php";
 	}
+        //Esto es un comentario
 ?>
