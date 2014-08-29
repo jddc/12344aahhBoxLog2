@@ -26,7 +26,8 @@
 
 							if (self :: $format_response == 'json') {//comprobar valor del segundo argumento es json
 
-								echo json_encode(self :: $response);//retorna response en formato json	
+								echo stripslashes(json_encode(self :: $response));//retorna response en formato json	
+                                                                
 								exit;					
 							}else{//el valor del segundo argumento es xml							
 								return self :: $response;					
