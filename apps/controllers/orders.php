@@ -1,9 +1,6 @@
 <?php
 class Orders extends Controller {
 	public function get_orders() {
-		error_reporting(E_ALL);
-		ini_set('display_errors', 'On');
-
 
 		$this -> load -> model("orders_model");
 		$this -> orders_model -> connection_set("MYSQL1");
@@ -19,8 +16,15 @@ class Orders extends Controller {
 			$orders = $this -> orders_model -> get_orders($limit);
         }else
         	exit();
+
+        if (!empty($orders)){
+        	$datos["response"] = json_encode($orders,JSON_UNESCAPED_SLASHES);
+        	$datos["httpResponse"] = 200;
+        }else{
+        	$datos["response"] = '';
+        	$datos["httpResponse"] = 404;
+        }
         
-		$datos["response"] = json_encode($orders,JSON_UNESCAPED_SLASHES);
         $this -> load -> view("orders_view", $datos);
 	}
 
