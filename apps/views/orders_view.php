@@ -1,2 +1,2 @@
 <?php
-	ResponseHTTP::getResponse(101, $response);
+    ResponseHTTP::getResponse(101, $response);

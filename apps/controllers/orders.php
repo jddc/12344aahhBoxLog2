@@ -4,23 +4,19 @@ class Orders extends Controller {
 		$this -> load -> model("orders_model");
 		$this -> orders_model -> connection_set("MYSQL1");
 		$id_sap_order = "";
-		$order = "";
 
-		$query = $this -> url -> get_query();
-		if (array_key_exists('id_sap_order', $query['items'])) {
-                    $id_sap_order = $query['items']['id_sap_order'];	
-		}		
+		$query = $this -> url -> get_params();
+                
+                $id_sap_order = (!empty($query['items'][0])) ? $query['items'][0] : '';
 
 		if(!empty($id_sap_order)) {
 			$orders = $this -> orders_model -> get_order($id_sap_order);
                 } else {
-			$orders = $this -> orders_model -> get_orders();	
+			$orders = $this -> orders_model -> get_orders();
                 }
                 
-		if (empty($orders)) {
-			$datos["response"] = json_encode($orders);
-			$this -> load -> view("orders_view", $datos);			
-		}
+		$datos["response"] = json_encode($orders,JSON_UNESCAPED_SLASHES);
+                $this -> load -> view("orders_view", $datos);
 	}
 
 	public function post_orders(){
