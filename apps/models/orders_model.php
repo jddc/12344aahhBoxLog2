@@ -9,8 +9,8 @@
 			return $this -> db -> dbs_rows;
 		}
 
-		public function get_orders(){	
-			$this -> db -> get("select id_sap_order,state,details,date from orders");
+		public function get_orders($limit){	
+			$this -> db -> get("select id_sap_order,state,details,date from orders limit ".$limit);
 			return $this -> db -> dbs_rows;
 		}
 
