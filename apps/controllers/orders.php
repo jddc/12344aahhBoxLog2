@@ -24,7 +24,6 @@ class Orders extends Controller {
         	$datos["response"] = '';
         	$datos["httpResponse"] = 404;
         }
-        
         $this -> load -> view("orders_view", $datos);
 	}
 
@@ -39,16 +38,20 @@ class Orders extends Controller {
                 
 		$query = $this -> url -> get_query();
 
-		foreach ($order as $key => &$value) {
-			if (array_key_exists($key, $query['items'])) {
-				$value = $query['items'][$key];	
-			}
+		if( !empty( $query) ) {
+			foreach ($order as $key => &$value) {
+				if (array_key_exists($key, $query['items'])) {
+					$value = $query['items'][$key];	
+				}
+			}	
 		}
-                
+		$datos["response"] = '';    
         if ($this -> orders_model -> put_order($order)) {
-            echo 'ready <br />';
-            echo print_r($order,1);
+        	$datos["response"] = json_encode($order,JSON_UNESCAPED_SLASHES);
+        	$datos["httpResponse"] = 201;
         }else
-            echo 'error';       			
+        	$datos["httpResponse"] = 400;
+
+        $this -> load -> view("orders_view", $datos);       			
 	}
 }
