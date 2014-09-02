@@ -1,9 +1,9 @@
 <?php
-class Orders extends Controller {
-	public function get_orders() {
+class Backs extends Controller {
+	public function get_backs() {
 		//Load model
-		$this -> load -> model("orders_model");
-		$this -> orders_model -> connection_set("MYSQL1");
+		$this -> load -> model("backs_model");
+		$this -> backs_model -> connection_set("MYSQL1");
 		$id_sap_order = '';
 
 		//Get query & id_sap
@@ -12,11 +12,11 @@ class Orders extends Controller {
         
         //Verify id_sap 
 		if(!empty($id_sap_order) && strlen($id_sap_order) <= 8) {
-			$orders = $this -> orders_model -> get_order($id_sap_order);
+			$orders = $this -> backs_model -> get_order($id_sap_order);
         }else if ($id_sap_order == ''){
         	//Get & Restrict number of elements shown
         	$limit = 10;
-			$orders = $this -> orders_model -> get_orders($limit);
+			$orders = $this -> backs_model -> get_orders($limit);
         }else
         	exit();
 
@@ -30,13 +30,13 @@ class Orders extends Controller {
         	$datos["httpResponse"] = 404;
         }
         //Send data to the view
-        $this -> load -> view("orders_view", $datos);
+        $this -> load -> view("backs_view", $datos);
 	}
 
-	public function post_orders(){
+	public function post_backs(){
 		//Load model
-		$this -> load -> model("orders_model");
-		$this -> orders_model -> connection_set("MYSQL1");
+		$this -> load -> model("backs_model");
+		$this -> backs_model -> connection_set("MYSQL1");
 		//Specifying expected parameters 
 		$order = array(
     				"id_sap_order" => "",
@@ -56,13 +56,13 @@ class Orders extends Controller {
 		}
 		$datos["response"] = ''; 
 		//Insert new order to DB   
-        if ($this -> orders_model -> put_order($order)) {
+        if ($this -> backs_model -> put_order($order)) {
         	$datos["response"] = json_encode($order,JSON_UNESCAPED_SLASHES);
         	$datos["httpResponse"] = 201;
         }else
         	$datos["httpResponse"] = 400;
 
         //Send data to the view
-        $this -> load -> view("orders_view", $datos);       			
+        $this -> load -> view("backs_view", $datos);       			
 	}
 }
